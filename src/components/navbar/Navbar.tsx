@@ -1,8 +1,9 @@
 import { signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../../firebase/firebase";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { logoutReducer } from "../../store/auth/authSlice";
+import Button from "../utils/button/Button";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -26,32 +27,29 @@ const Navbar = () => {
     }
   };
 
-  const handleLogin = () => {
-    navigate("/");
-  };
-
   return (
-    <div className="h-16 flex fixed w-full z-10 items-center justify-between px-12 py-2 bg-gray-600">
-      <h1 className="text-3xl font-bold text-white">
-        Firebase Project Template
-      </h1>
-      {isAuthenticated ? (
-        <button
-          type="button"
-          onClick={handleLogout}
-          className="inline-flex w-full justify-center rounded-md bg-blue-600 py-2 px-3 text-sm font-semibold text-white shadow-sm mr-3 sm:w-auto"
-        >
-          Logout
-        </button>
-      ) : (
-        <button
-          type="button"
-          onClick={handleLogin}
-          className="inline-flex w-full justify-center rounded-md bg-blue-600 py-2 px-3 text-sm font-semibold text-white shadow-sm mr-3 sm:w-auto"
-        >
-          Login
-        </button>
-      )}
+    <div className="h-16 flex fixed w-full z-10 items-center justify-between py-2 bg-gray-600">
+      <div className="flex justify-between w-full lg:mx-28 md:mx-1 sm:mx-1 xs:mx-1 lg:px-6 px-4">
+        <Link to={"/"}>
+          <h1 className="text-3xl font-bold text-white">Firebase Template</h1>
+        </Link>
+        {isAuthenticated ? (
+          <div className="flex gap-4">
+            <Button size="md" onClick={handleLogout}>
+              Logout
+            </Button>
+          </div>
+        ) : (
+          <div className="flex gap-4">
+            <Button size="md" onClick={() => navigate("/register")}>
+              Register
+            </Button>
+            <Button size="md" onClick={() => navigate("/login")}>
+              Login
+            </Button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
