@@ -17,19 +17,20 @@ function App() {
       <Router>
         <Navbar />
         <div className="py-16">
-          {isAuthenticated && (
-            <Routes>
-              <Route path="/" element={<div>Homepage</div>} />
-            </Routes>
-          )}
-          {!isAuthenticated && (
-            <Routes>
-              {/* Auth routes */}
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="*" element={<Navigate to="/login" replace />} />
-            </Routes>
-          )}
+          <Routes>
+            {isAuthenticated && (
+              <Route path="/home" element={<div>Homepage</div>} />
+            )}
+            {!isAuthenticated && (
+              <>
+                {/* Auth routes */}
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="*" element={<Navigate to="/login" replace />} />
+              </>
+            )}
+            <Route path="/" element={<div>Homepage</div>} />
+          </Routes>
         </div>
       </Router>
     </div>
