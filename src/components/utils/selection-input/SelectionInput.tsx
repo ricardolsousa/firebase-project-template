@@ -22,11 +22,15 @@ const SelectionInput = ({
 }: SelectionInputProps) => {
   return (
     <Listbox value={value} onChange={(e: any) => setValue(e)}>
-      {label && <label htmlFor="status">{label}</label>}
+      {label && (
+        <label className="font-bold" htmlFor="status">
+          {label}
+        </label>
+      )}
       <div className="relative">
         <ListboxButton
-          className="grid w-full cursor-default rounded border border-gray-200 py-1 px-2 text-left"
-          style={{ minHeight: "34px", width: "fit-content" }}
+          className="grid w-full cursor-default rounded border border-gray-400 py-1 px-2 text-left"
+          style={{ minHeight: "34px" }}
         >
           <span className="col-start-1 row-start-1 flex items-center gap-3 pr-6">
             <span className="block truncate text-gray-500">
